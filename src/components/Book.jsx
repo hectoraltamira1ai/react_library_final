@@ -19,8 +19,13 @@ const Book = ({ book }) => {
         }
       }, 300);
     };
+    image.onerror = () => {
+      if (mountedRef.current) {
+        // Optionally set a fallback image or handle the error
+        setImg(null);
+      }
+    };
     return () => {
-      // When the component unmounts 
       mountedRef.current = false;
     };
   }, [book.url]);
